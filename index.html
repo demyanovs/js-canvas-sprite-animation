@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Canvas Sprite Animation</title>
+    <script type="text/javascript" src="js/Sprite.js"></script>
+    <script type="text/javascript" src="js/Sonic.js"></script>
+    <script type="text/javascript" src="js/Coin.js"></script>
+</head>
+<body>
+    <canvas id="gamecanvas" width="400" height="200" style="border: 1px solid black; "></canvas>
+    <div>
+        <button type="button" onclick="game.sonic.walk()">Walk</button>
+        <button type="button" onclick="game.sonic.run()">Run</button>
+        <button type="button" onclick="game.sonic.idle()">Idle</button>
+    </div>
+    <script>
+        const game = {
+            isRunning: true,
+
+            init() {
+                game.canvas = document.getElementById("gamecanvas");
+                game.context = game.canvas.getContext("2d");
+
+                this.sonic = new Sonic(80, 50, game.context);
+                this.coin = new Coin(300, 20, game.context);
+
+                // Start game
+                game.drawingLoop();
+            },
+
+            drawingLoop() {
+                // Clear canvas
+                game.context.clearRect(0, 0, game.canvas.width, game.canvas.height);
+                // Draw and update frame index
+                game.sonic.render();
+                game.sonic.update();
+
+                game.coin.render();
+                game.coin.update();
+
+                if (game.isRunning) {
+                    requestAnimationFrame(game.drawingLoop);
+                }
+            },
+        };
+
+        window.addEventListener("load", () => {
+            game.init();
+        });
+    </script>
+</body>
+</html>
