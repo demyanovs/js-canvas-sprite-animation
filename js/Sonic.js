@@ -2,10 +2,10 @@ class Sonic extends Sprite {
 
     static src = 'images/sonic3_spritesheet.png';
 
-    constructor(x, y, context) {
+    constructor(x, y, context, image) {
         super({
             context: context,
-            image: loader.images.sonic,
+            image: image,
             x: x,
             y: y,
             width: 114,

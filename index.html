@@ -24,8 +24,8 @@
                 game.loader = loader;
                 game.loader.init();
 
-                this.sonic = new Sonic(80, 50, game.context);
-                this.coin = new Coin(300, 20, game.context);
+                this.sonic = new Sonic(80, 50, game.context, loader.images.sonic);
+                this.coin = new Coin(300, 20, game.context, loader.images.coin);
 
                 // Start game
                 game.drawingLoop();
