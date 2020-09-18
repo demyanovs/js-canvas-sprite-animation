@@ -21,6 +21,8 @@
             init() {
                 game.canvas = document.getElementById("gamecanvas");
                 game.context = game.canvas.getContext("2d");
+                game.loader = loader;
+                game.loader.init();
 
                 this.sonic = new Sonic(80, 50, game.context);
                 this.coin = new Coin(300, 20, game.context);
@@ -43,6 +45,23 @@
                     requestAnimationFrame(game.drawingLoop);
                 }
             },
+        };
+
+        const loader = {
+            count: 0,
+            images: {},
+
+            add(title, src) {
+                const image = new Image();
+                image.src = src;
+                this.images[title] = image;
+                this.count++;
+            },
+
+            init() {
+                loader.add('sonic', Sonic.src);
+                loader.add('coin', Coin.src);
+            }
         };
 
         window.addEventListener("load", () => {

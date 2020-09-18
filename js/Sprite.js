@@ -1,7 +1,7 @@
 class Sprite {
     constructor(options) {
         this.context = options.context;
-        this.src = options.src; // Path to image sprite sheet
+        this.image = options.image; // Path to image sprite sheet
         this.x = options.x; // Coordinates on canvas
         this.y = options.y;
         this.width = options.width; // Size of sprite frame
@@ -26,10 +26,8 @@ class Sprite {
     }
 
     render() {
-        const image = new Image();
-        image.src = this.src;
         this.context.drawImage(
-            image,
+            this.image,
             this.frameIndex * this.width, // The x-axis coordinate of the top left corner
             this.row * this.height, // The y-axis coordinate of the top left corner
             this.width, // The width of the sub-rectangle

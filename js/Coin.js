@@ -1,8 +1,11 @@
 class Coin extends Sprite {
+
+    static src = 'images/coin_spritesheet.png';
+
     constructor(x, y, context) {
         super({
             context: context,
-            src: 'images/coin_spritesheet.png',
+            image: loader.images.coin,
             x: x,
             y: y,
             width: 48,
